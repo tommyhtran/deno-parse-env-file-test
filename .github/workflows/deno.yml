@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  built-in-deno-env:
+  ubuntu-built-in-deno-env:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,22 @@ jobs:
       - name: Run test script
         run: deno run --env --allow-env ./built-in-deno-env.ts
 
-  std-dotenv:
+  windows-built-in-deno-env:
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: "2.0.2"
+
+      - name: Run test script
+        run: deno run --env --allow-env ./built-in-deno-env.ts
+
+  ubuntu-std-dotenv:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,4 +53,19 @@ jobs:
           deno-version: "2.0.2"
 
       - name: Run test script
-        run: deno run --env --allow-env ./std-dotenv.ts
+        run: deno run --env --allow-env --allow-read="./.env" ./std-dotenv.ts
+
+  windows-std-dotenv:
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: "2.0.2"
+
+      - name: Run test script
+        run: deno run --env --allow-env --allow-read="./.env" ./std-dotenv.ts
