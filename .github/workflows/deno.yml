@@ -23,7 +23,7 @@ jobs:
           deno-version: "2.0.2"
 
       - name: Run test script
-        run: deno run -A ./built-in-deno-env.ts
+        run: deno run --env --allow-env ./built-in-deno-env.ts
 
   std-dotenv:
     runs-on: ubuntu-latest
@@ -38,4 +38,4 @@ jobs:
           deno-version: "2.0.2"
 
       - name: Run test script
-        run: deno run -A ./std-dotenv.ts
+        run: deno run --env --allow-env ./std-dotenv.ts
